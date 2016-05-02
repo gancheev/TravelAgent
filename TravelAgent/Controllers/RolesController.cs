@@ -16,9 +16,9 @@ namespace TravelAgent.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
- 
+
         ApplicationDbContext context = new ApplicationDbContext();
-        
+
 
         //
         // GET: /Roles/
@@ -101,7 +101,7 @@ namespace TravelAgent.Controllers
             return View();
         }
 
-          public ApplicationUserManager UserManager
+        public ApplicationUserManager UserManager
         {
             get
             {
@@ -118,8 +118,8 @@ namespace TravelAgent.Controllers
         public ActionResult RoleAddToUser(string UserName, string RoleName)
         {
             ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase));
-            if (user != null) 
-            { 
+            if (user != null)
+            {
                 UserManager.AddToRole(user.Id, RoleName);
             }
             ViewBag.ResultMessage = "Role created successfully !";
@@ -137,13 +137,13 @@ namespace TravelAgent.Controllers
         {
             if (!string.IsNullOrWhiteSpace(UserName))
             {
-               ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase));
-               if (user != null)
-               {
-                   ViewBag.RolesForThisUser = UserManager.GetRoles(user.Id);
-               }
+                ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase));
+                if (user != null)
+                {
+                    ViewBag.RolesForThisUser = UserManager.GetRoles(user.Id);
+                }
 
-               
+
 
                 // prepopulat roles for the view dropdown
                 var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
@@ -157,14 +157,17 @@ namespace TravelAgent.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
         {
-            var account = new AccountController();
-            ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+           ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase));
+                if (user != null)
+                {
+                   if (UserManager.IsInRole(user.Id, RoleName))
+                   {
+                          UserManager.RemoveFromRole(user.Id, RoleName);
+                         ViewBag.ResultMessage = "Role removed from this user successfully !";
+                   }
+                  }
 
-            if (account.UserManager.IsInRole(user.Id, RoleName))
-            {
-                account.UserManager.RemoveFromRole(user.Id, RoleName);
-                ViewBag.ResultMessage = "Role removed from this user successfully !";
-            }
+            
             else
             {
                 ViewBag.ResultMessage = "This user doesn't belong to selected role.";
@@ -177,6 +180,6 @@ namespace TravelAgent.Controllers
         }
 
 
-    
+
     }
 }
