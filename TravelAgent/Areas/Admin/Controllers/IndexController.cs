@@ -7,11 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TravelAgent.Areas.Admin.Models;
 using TravelAgent.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+
+
 namespace TravelAgent.Areas.Admin.Controllers
-
-
 {
     [Authorize(Roles="Admin")]
    
