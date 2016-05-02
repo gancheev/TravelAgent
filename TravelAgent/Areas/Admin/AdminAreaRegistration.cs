@@ -2,6 +2,7 @@
 
 namespace TravelAgent.Areas.Admin
 {
+    [Authorize(Roles="Admin")]
     public class AdminAreaRegistration : AreaRegistration 
     {
         public override string AreaName 

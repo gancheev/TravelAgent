@@ -9,9 +9,10 @@ using TravelAgent.Models;
 using TravelAgent.Controllers;
 using Microsoft.AspNet.Identity.Owin;
 
+
 namespace TravelAgent.Controllers
 {
-    [Authorize]
+    [Authorize(Roles="Admin")]
     public class RolesController : Controller
     {
         private ApplicationSignInManager _signInManager;

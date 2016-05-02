@@ -9,6 +9,7 @@ namespace TravelAgent.Areas.Admin.Controllers
     public class SettingsController : Controller
     {
         // GET: Admin/Admin
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
