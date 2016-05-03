@@ -4,10 +4,15 @@
 @model IEnumerable<TravelAgent.Areas.Admin.Controllers.NewsViewModel>
 
 <div class="jumbotron">
-    <h1>@Html.DisplayNameFor(model => model.Title)</h1>
-    <p class="lead">@Html.DisplayNameFor(model => model.Text)</p>
-    <p><a href="#" class="btn btn-primary btn-lg">@Html.DisplayNameFor(model => model.ReleaseDate)</a></p>
-
+    @foreach (var item in Model)
+        {
+            <p><h1>@Html.DisplayNameFor(model => model.Title) </h1></p>
+            <p id="Title">@Html.DisplayFor(modelItem => item.Title)</p>
+            <p class="lead">@Html.DisplayNameFor(model => model.Text)</p>
+            <p>@Html.DisplayFor(modelItem => item.Text)</p>
+            <p>@Html.DisplayNameFor(model => model.ReleaseDate)</p>
+            <p>@Html.DisplayFor(modelItem => item.ReleaseDate)</p>    
+        }
       
 </div>
     

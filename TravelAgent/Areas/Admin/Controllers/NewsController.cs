@@ -14,7 +14,6 @@ namespace TravelAgent.Areas.Admin.Models
     public class NewsController : Controller
     {
         private NewsDBContext db = new NewsDBContext();
-
         // GET: Admin/News
         public ActionResult Index()
         {

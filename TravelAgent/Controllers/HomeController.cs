@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelAgent.Areas.Admin.Controllers;
 
 namespace TravelAgent.Controllers
 {
     public class HomeController : Controller
     {
+        private NewsDBContext db = new NewsDBContext();
         public ActionResult Index()
         {
-            return View();
-           
+            return View(db.News.ToList());
         }
 
         public ActionResult About()

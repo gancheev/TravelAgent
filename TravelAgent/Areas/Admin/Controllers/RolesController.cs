@@ -8,9 +8,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using TravelAgent.Models;
 using TravelAgent.Controllers;
 using Microsoft.AspNet.Identity.Owin;
+using TravelAgent.Areas.Admin.Controllers;
 
-
-namespace TravelAgent.Controllers
+namespace TravelAgent.Areas.Admin.Controllers
 {
     [Authorize(Roles="Admin")]
     public class RolesController : Controller
