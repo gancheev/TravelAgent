@@ -86,13 +86,13 @@ namespace TravelAgent.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Roles/Delete/5
+        // GET: /Admin/Roles/Delete/5
         public ActionResult Delete(string RoleName)
         {
             var thisRole = context.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-            context.Roles.Remove(thisRole);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+                context.Roles.Remove(thisRole);
+                context.SaveChanges();
+                return RedirectToAction("Index");
         }
 
         public ActionResult ManageUserRoles()

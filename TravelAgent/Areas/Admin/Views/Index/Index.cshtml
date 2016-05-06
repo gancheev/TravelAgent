@@ -1,49 +1,25 @@
 ﻿@{
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-}
-
-
-@{
     ViewBag.Title = "All Users";
 }
 <h1>ALL USERS</h1>
-<div>
-    @foreach (var user in Model.Admins)
-    {
+<div class="row">
+    <div class="col-md-3">
         <table class="table table-striped table-hover ">
             <thead>
                 <tr>
-                    <td>USER</td>
-                   
+                    <td class="warning">USER</td>
                 </tr>
             </thead>
             <tbody>
-                <tr class="info">
-                    <td>@user.Username</td>
-                    
-                </tr>
-            </tbody>
-        </table>
+                @foreach (var user in Model.Admins)
+                {
 
-
-    }
-
-        @foreach (var user in Model.Users)
-        {
-
-            <table class="table table-striped table-hover ">
-                <thead>
-                    <tr>
-                        <td>USER</td>
-                                      
-                </thead>
-                <tbody>
                     <tr class="info">
                         <td>@user.Username</td>
-                        <td>@user.Roles </td>
                     </tr>
-                </tbody>
-            </table>
-
-        }
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
